@@ -1,21 +1,13 @@
-import React, { useState } from "react";
+import React, { useState }  from "react";
 import axios from "axios";
 
-export default function WeatherSearch() {
+export default function ChangeCity() {
   const [city, setCity] = useState("");
   const [result, setResult] = useState(false);
   const [weather, setWeather] = useState("");
 
   let form = (
-    <form onSubmit={handleSubmit}>
-      <input
-        class="button"
-        type="search"
-        placeholder="Search for a city"
-        onChange={updateCity}
-      />
-      <button class="button" type="submit">Search</button>
-    </form>
+      <button class="button" type="submit" onClick={updateCity}>Search</button>
   );
 
   function displayWeather(response) {
@@ -41,12 +33,15 @@ export default function WeatherSearch() {
   }
 
   function updateCity(event) {
+    let changeCity = prompt("Please enter a city");
+    console.log(changeCity);
     setCity(event.target.value);
   }
   if (result === true) {
     return (
       <div>
         {form}
+        <handleSubmit />
         <h2>
           {weather.cityName}, {weather.country}
         </h2>
