@@ -7,7 +7,7 @@ export default function ChangeCity() {
   const [weather, setWeather] = useState("");
 
   let form = (
-      <button class="button" type="submit" onClick={updateCity}>Search</button>
+      <button className="button" type="submit" onClick={updateCity}>Search</button>
   );
 
   function displayWeather(response) {
