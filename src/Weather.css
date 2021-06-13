@@ -89,3 +89,6 @@ svg {
   display: block;
   margin: 0 auto;
 }
+div#main.container {
+  padding-left: 12px;
+}

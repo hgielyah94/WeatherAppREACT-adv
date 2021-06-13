@@ -6,7 +6,7 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-      <Weather />
+      <Weather defaultCity="London"/>
       <br />
       <footer>
     <p>Coded by Hayleigh <br /><a href="https://github.com/hgielyah94/WeatherAppREACT-basic-" target="_blank" rel="noreferrer">Open-sourced on GitHub</a></p>

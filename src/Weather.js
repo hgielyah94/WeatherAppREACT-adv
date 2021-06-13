@@ -1,16 +1,18 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 import "./Weather.css";
+import WeatherInfo from "./WeatherInfo"
 import axios from "axios";
 import Loader from "react-loader-spinner";
-//import SearchEngine from "./SearchEngine";
-//import ChangeCity from "./ChangeCity";
 
-export default function Weather() {
-const [ready, setReady] = useState(false);
-const [weatherData, setWeatherData] = useState({});
+export default function Weather(props) {
+const [weatherData, setWeatherData] = useState({ ready: false });
+const [city, setCity] = useState(props.defaultCity);
+
+
 function handleResponse(response) {
   console.log(response.data);
   setWeatherData({
+    ready: true,
     city: response.data.name,
     country: response.data.sys.country,
     temp: response.data.main.temp,
@@ -18,77 +20,51 @@ function handleResponse(response) {
     humidity: response.data.main.humidity,
     wind: response.data.wind.speed,
     description: response.data.weather[0].description,
+    date: new Date (response.data.dt * 1000),
     });
-
-  setReady(true);
 }
 
-if (ready) {
+function search() {
+  const apiKey = "785fc68afdfb95b78288ff6fb91c5ed0";
+  const units = "metric"
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(handleResponse);
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    search(city);
+  }
+
+function updateCity(event) {
+    setCity(event.target.value);
+  }
+
+if (weatherData.ready) {
   return (
   <div className="Weather">
     <div className="container">
       <div className="row">
-        <div className="col-6">
-          <h1 className="locationIcon"><i className="fas fa-map-marker-alt"></i></h1>
-        </div>
-        <div className="col-6">
-          <form id="search-city">
+        <div className="col-12">
+          <form id="search-city" onSubmit={handleSubmit}>
             <input
               type="search"
               className="button"
               placeholder="Enter a city"
               autoComplete="off"
               id="searchTextInput"
+              onChange={updateCity}
             />
             <input type="submit" className="button" value="Search" />
           </form>
-          <h6>
-            <a id="current-location-link" href="">Use current location</a>
-          </h6>
-        </div>
-      </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-8">
-            <h1 id="city">{weatherData.city}, {weatherData.country}</h1>
-            <h4 className="localTime">Monday 30th November, 18:38 GMT</h4>
-          </div>
-          <div className="col-4"></div>
-
-          <div className="col-12"></div>
-
-          <div className="col-2"></div>
-          <div className="col-2">
-            <h1 class="mainWeatherIcon"><i class="fas fa-cloud-sun"></i></h1>
-          </div>
-          <div className="col-2">
-            <h1 id="main-temp">{Math.round(weatherData.temp)}</h1>
-          </div>
-          <div className="col-2">
-            <h3>
-              <a id="celsius-link" href="#">℃</a> |
-              <a id="fahrenheit-link" href="#">℉</a>
-            </h3>
-          </div>
-          <div className="col-4">
-            <h4 id="description">{weatherData.description}</h4>
-            <p id="pressure">Pressure: {weatherData.pressure}</p>
-            <p id="humidity">Humidity: {weatherData.humidity}%</p>
-            <p id="wind">Wind: {Math.round(weatherData.wind)}km/h</p>
+          <WeatherInfo data={weatherData}/>
           </div>
         </div>
         </div>
         </div>
-        </div>
-
-  );
+          );
 } else {
-  const apiKey = "412762c69ffee39720322107567a71c2";
-  const units = "metric"
-  let city ="London";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(handleResponse);
-
+  search();
   return (
     <div className="container loader">
       <div className="row">
