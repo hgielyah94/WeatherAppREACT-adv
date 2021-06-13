@@ -1,5 +1,6 @@
 import React from "react";
 import FormatDate from "./FormatDate";
+import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherInfo(props) {
   return (
@@ -11,7 +12,7 @@ export default function WeatherInfo(props) {
         <div className="row">
           <div className="col-8">
           <div className="col-6">
-          <h1 className="locationIcon"><i className="fas fa-map-marker-alt"></i></h1>
+            <h1 className="locationIcon"><i className="fas fa-map-marker-alt"></i></h1>
         </div>
             <h1 id="city">{props.data.city}, {props.data.country}</h1>
             <h4 className="localTime"><FormatDate date={props.data.date}/></h4>
@@ -22,7 +23,7 @@ export default function WeatherInfo(props) {
 
           <div className="col-2"></div>
           <div className="col-2">
-            <h1 className="mainWeatherIcon"><i className="fas fa-cloud-sun"></i></h1>
+            <WeatherIcon className="mainWeatherIcon" code={props.data.icon} alt={props.data.description}/>
           </div>
           <div className="col-2">
             <h1 id="main-temp">{Math.round(props.data.temp)}</h1>

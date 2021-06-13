@@ -38,10 +38,6 @@ h6 {
   text-align: center;
   font-size: 40px;
 }
-.mainWeatherIcon {
-  text-align: center;
-  font-size: 100px;
-}
 #main-temp {
   text-align: right;
   font-size: 100px;
@@ -91,4 +87,5 @@ svg {
 }
 div#main.container {
   padding-left: 12px;
+  padding-right: 12px;
 }
