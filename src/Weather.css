@@ -39,7 +39,6 @@ h6 {
   font-size: 40px;
 }
 #main-temp {
-  text-align: right;
   font-size: 100px;
 }
 h3 {
@@ -71,6 +70,15 @@ h3 {
 #fahrenheit-link {
   font-size: 28px;
 }
+#celsius-link-clicked,
+#fahrenheit-link-clicked {
+  font-size: 28px;
+  color: grey;
+}
+#celsius-link,
+#celsius-link-clicked {
+  padding-left: 15px;
+}
 inner.HTML {
   margin: 0 auto;
   text-align: center;
@@ -88,4 +96,10 @@ svg {
 div#main.container {
   padding-left: 12px;
   padding-right: 12px;
+}
+div#unitTemp,
+h1#main-temp,
+h3.main-temp,
+h2.main-temp {
+  display: inline;
 }
