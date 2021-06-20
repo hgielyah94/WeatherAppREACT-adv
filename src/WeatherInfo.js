@@ -2,13 +2,13 @@ import React from "react";
 import FormatDate from "./FormatDate";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
+import CurrentLocation from "./CurrentLocation";
 
 export default function WeatherInfo(props) {
+
   return (
     <div className="WeatherInfo">
-    <h6>
-      <a id="current-location-link" href="">Use current location</a>
-          </h6>
+    <CurrentLocation latitude={props.data.latitude} longitude={props.data.longitude}/>
       <div className="container" id="main">
         <div className="row">
           <div className="col-8">
@@ -24,7 +24,7 @@ export default function WeatherInfo(props) {
 
           <div className="col-2"></div>
           <div className="col-2">
-            <WeatherIcon className="mainWeatherIcon" code={props.data.icon} alt={props.data.description}/>
+            <WeatherIcon className="mainWeatherIcon" code={props.data.icon} size={128}/>
           </div>
           <div className="col-4">
             <WeatherTemperature celsius={props.data.temp}/>

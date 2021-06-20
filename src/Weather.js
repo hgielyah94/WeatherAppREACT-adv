@@ -3,6 +3,8 @@ import "./Weather.css";
 import WeatherInfo from "./WeatherInfo"
 import axios from "axios";
 import Loader from "react-loader-spinner";
+import WeatherForecast from "./WeatherForecast";
+import ChangeCity from "./ChangeCity";
 
 export default function Weather(props) {
 const [weatherData, setWeatherData] = useState({ ready: false });
@@ -22,11 +24,13 @@ function handleResponse(response) {
     description: response.data.weather[0].description,
     date: new Date (response.data.dt * 1000),
     icon: response.data.weather[0].icon,
+    coordinates: response.data.coord,
+    timezone: response.data.timezone,
     });
 }
 
 function search() {
-  const apiKey = "785fc68afdfb95b78288ff6fb91c5ed0";
+  const apiKey = "0fd53f7affdf277c9962be552ec9b405";
   const units = "metric"
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(handleResponse);
@@ -59,6 +63,8 @@ if (weatherData.ready) {
             <input type="submit" className="button" value="Search" />
           </form>
           <WeatherInfo data={weatherData}/>
+          <WeatherForecast coordinates={weatherData.coordinates}/>
+          <ChangeCity />
           </div>
         </div>
         </div>

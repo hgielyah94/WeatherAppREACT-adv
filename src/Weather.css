@@ -29,15 +29,6 @@ h5,
 h6 {
   text-align: center;
 }
-.weatherIconOne,
-.weatherIconTwo,
-.weatherIconThree,
-.weatherIconFour,
-.weatherIconFive,
-.weatherIconSix {
-  text-align: center;
-  font-size: 40px;
-}
 #main-temp {
   font-size: 100px;
 }
@@ -102,4 +93,9 @@ h1#main-temp,
 h3.main-temp,
 h2.main-temp {
   display: inline;
+}
+#weatherDays {
+  display: inline-block;
+  text-align: center;
+  height: 40px;
 }
