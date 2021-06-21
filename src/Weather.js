@@ -4,7 +4,7 @@ import WeatherInfo from "./WeatherInfo"
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import WeatherForecast from "./WeatherForecast";
-import ChangeCity from "./ChangeCity";
+//import ChangeCity from "./ChangeCity";
 
 export default function Weather(props) {
 const [weatherData, setWeatherData] = useState({ ready: false });
@@ -25,7 +25,6 @@ function handleResponse(response) {
     date: new Date (response.data.dt * 1000),
     icon: response.data.weather[0].icon,
     coordinates: response.data.coord,
-    timezone: response.data.timezone,
     });
 }
 
@@ -64,7 +63,6 @@ if (weatherData.ready) {
           </form>
           <WeatherInfo data={weatherData}/>
           <WeatherForecast coordinates={weatherData.coordinates}/>
-          <ChangeCity />
           </div>
         </div>
         </div>

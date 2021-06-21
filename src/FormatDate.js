@@ -68,7 +68,7 @@ currentDate = `${currentDate}th`;
   return (
     <div>
       {day} {currentDate} {month} {currentYear} <br />
-      Local time: {hours}:{minutes} 
+      Last updated: {hours}:{minutes} BST
     </div>
   );
 }
