@@ -9,7 +9,7 @@ export default function App() {
       <Weather defaultCity="London"/>
       <br />
       <footer>
-    <p>Coded by Hayleigh <br /><a href="https://github.com/hgielyah94/WeatherAppREACT-basic-" target="_blank" rel="noreferrer">Open-sourced on GitHub</a></p>
+    <p>Coded by Hayleigh <br /><a href="https://github.com/hgielyah94/WeatherAppREACT-adv" target="_blank" rel="noreferrer">Open-sourced on GitHub</a></p>
     </footer>
     </div>
     </div>
